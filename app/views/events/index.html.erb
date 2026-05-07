@@ -1,0 +1,30 @@
+<h1>All Events</h1>
+
+<% @events.each do |event| %>
+  <div style="margin-bottom: 40px;">
+
+    <img src="<%= event.image_url %>" width="300">
+
+    <h2><%= event.title %></h2>
+
+    <p>
+      <strong>Start Date:</strong>
+      <%= event.start_date.strftime("%d %b %Y") %>
+    </p>
+
+    <p>
+      <strong>End Date:</strong>
+      <%= event.end_date.strftime("%d %b %Y") %>
+    </p>
+
+    <p>
+      <%= truncate(event.description, length: 200) %>
+    </p>
+
+    <a href="<%= event.event_url %>" target="_blank">
+      View Event
+    </a>
+
+    <hr>
+  </div>
+<% end %>
