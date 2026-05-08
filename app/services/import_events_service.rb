@@ -1,7 +1,7 @@
 class ImportEventsService
   EXCLUDED_COLUMNS = %w[ id created_at updated_at ].freeze
 
-  UPSERT_COLUMNS = ( Event.column_names - EXCLUDED_COLUMNS ).map(&:to_sym).freeze
+  UPSERT_COLUMNS = (Event.column_names - EXCLUDED_COLUMNS).map(&:to_sym).freeze
 
   def call
     records = valid_records

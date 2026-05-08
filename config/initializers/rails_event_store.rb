@@ -23,10 +23,10 @@ Rails.configuration.to_prepare do
     store.subscribe_to_all_events(RailsEventStore::LinkByCorrelationId.new)
     store.subscribe_to_all_events(RailsEventStore::LinkByCausationId.new)
 
-    store.subscribe(to: [Events::Upvoted]) do |event|
+    store.subscribe(to: [ Events::Upvoted ]) do |event|
       Rails.logger.info("Upvote recorded for event #{event.data[:event_id]} by user #{event.data[:user_id]}")
     end
-    store.subscribe(to: [Events::Downvoted]) do |event|
+    store.subscribe(to: [ Events::Downvoted ]) do |event|
       Rails.logger.info("Downvoted recorded for event #{event.data[:event_id]} by user #{event.data[:user_id]}")
     end
   end
