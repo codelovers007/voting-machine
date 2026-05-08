@@ -25,7 +25,7 @@ RSpec.describe ImportEventsService, type: :service do
     }
   end
 
-  let(:api_response) { { "data" => [valid_event_data] } }
+  let(:api_response) { { "data" => [ valid_event_data ] } }
 
   before do
     billetto_client = instance_double(Billetto::Client)
@@ -61,7 +61,7 @@ RSpec.describe ImportEventsService, type: :service do
 
       it "updates existing event on upsert" do
         service.call
-        updated_response = { "data" => [valid_event_data.merge("title" => "Updated Concert")] }
+        updated_response = { "data" => [ valid_event_data.merge("title" => "Updated Concert") ] }
         allow(Billetto::Client).to receive(:new).and_return(
           instance_double(Billetto::Client, get_events: updated_response)
         )
@@ -79,7 +79,7 @@ RSpec.describe ImportEventsService, type: :service do
         billetto_client = instance_double(Billetto::Client)
         allow(Billetto::Client).to receive(:new).and_return(billetto_client)
         allow(billetto_client).to receive(:get_events).and_return(
-          { "data" => [valid_event_data, second_event_data] }
+          { "data" => [ valid_event_data, second_event_data ] }
         )
       end
 
@@ -93,7 +93,7 @@ RSpec.describe ImportEventsService, type: :service do
         billetto_client = instance_double(Billetto::Client)
         allow(Billetto::Client).to receive(:new).and_return(billetto_client)
         allow(billetto_client).to receive(:get_events).and_return(
-          { "data" => [invalid_event_data] }
+          { "data" => [ invalid_event_data ] }
         )
       end
 
@@ -109,7 +109,7 @@ RSpec.describe ImportEventsService, type: :service do
         billetto_client = instance_double(Billetto::Client)
         allow(Billetto::Client).to receive(:new).and_return(billetto_client)
         allow(billetto_client).to receive(:get_events).and_return(
-          { "data" => [valid_event_data, invalid_event_data] }
+          { "data" => [ valid_event_data, invalid_event_data ] }
         )
       end
 

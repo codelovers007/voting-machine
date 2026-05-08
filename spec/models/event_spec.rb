@@ -51,7 +51,7 @@ RSpec.describe Event, type: :model do
       event2 = create(:event, start_date: Date.today + 2,  end_date: Date.today + 5)
       event3 = create(:event, start_date: Date.today + 5,  end_date: Date.today + 8)
 
-      expect(Event.apply_order.to_a).to eq([event2, event3, event1])
+      expect(Event.apply_order.to_a).to eq([ event2, event3, event1 ])
     end
   end
 end
