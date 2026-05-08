@@ -344,3 +344,39 @@ bundle exec rspec --format documentation
 **Upsert for event import** — Using `upsert_all` with `unique_by: :external_id` means the import can be run repeatedly (via cron or manually) without creating duplicates. Existing events are updated with fresh data from the API.
  
 **Guest access to event listing** — The index page is intentionally public so users can browse events before deciding to sign up. Vote buttons redirect to Clerk sign-in if clicked by a guest, providing a smooth conversion flow.
+
+# Voting System Screenshots
+
+A modern Rails 8 voting application with Clerk authentication.
+
+---
+
+## Sign In Screen
+
+<p align="center">
+  <img src="screenshots/sign-in.png" width="800" />
+</p>
+
+---
+
+## Sign Up Screen
+
+<p align="center">
+  <img src="screenshots/sign-up.png" width="800" />
+</p>
+
+---
+
+## Home Page (Without Login)
+
+<p align="center">
+  <img src="screenshots/without-login-index.png" width="800" />
+</p>
+
+---
+
+## Home Page (Logged In)
+
+<p align="center">
+  <img src="screenshots/with-login-index.png" width="800" />
+</p>
