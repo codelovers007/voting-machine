@@ -1,0 +1,9 @@
+<script>
+  async function doSignOut() {
+    if (!window.Clerk) { setTimeout(doSignOut, 50); return; }
+    await window.Clerk.load({ uiComponents: true });
+    await window.Clerk.signOut();
+    window.location.replace("<%= Rails.application.credentials.dig(:clerk, :after_sign_in_url) %>");
+  }
+  doSignOut();
+</script>

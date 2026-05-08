@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   resources :events, only: [:index]
   # Defines the root path route ("/")
   root "events#index"
+
+  get "/sign-out", to: "auth#sign_out", as: :sign_out
+  # get "/sign-in", to: "auth#sign_in"
+  # get "/sign-up",  to: "auth#sign_up"
 end

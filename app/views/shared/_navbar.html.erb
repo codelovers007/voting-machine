@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <a href="/" class="navbar-brand">Event Voting Machine</a>
+
+  <div class="navbar-actions">
+    <% if @clerk_user %>
+      <span class="navbar-user">
+        <%= @clerk_user.username %>
+      </span>
+      <a href="/sign-out" class="btn-signout" data-turbo="false">Sign Out</a>
+    <% else %>
+      <% sign_in_url = Rails.application.credentials.dig(:clerk, :sign_in_url) %>
+      <% sign_up_url = Rails.application.credentials.dig(:clerk, :sign_up_url) %>
+      <% after_url   = Rails.application.credentials.dig(:clerk, :after_sign_in_url) %>
+      <a href="<%= sign_in_url %>?redirect_url=<%= CGI.escape(after_url) %>"
+         class="btn-signin"
+         data-turbo="false">Sign In</a>
+      <a href="<%= sign_up_url %>?redirect_url=<%= CGI.escape(after_url) %>"
+         class="btn-signup"
+         data-turbo="false">Sign Up</a>
+    <% end %>
+  </div>
+</nav>
