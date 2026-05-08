@@ -2,6 +2,9 @@ require "rails_event_store"
 require "aggregate_root"
 require "arkency/command_bus"
 
+require Rails.root.join("app/events/upvoted")
+require Rails.root.join("app/events/downvoted")
+
 Rails.configuration.to_prepare do
   Rails.configuration.event_store = RailsEventStore::JSONClient.new
   Rails.configuration.command_bus = Arkency::CommandBus.new
@@ -19,6 +22,13 @@ Rails.configuration.to_prepare do
     store.subscribe_to_all_events(RailsEventStore::LinkByEventType.new)
     store.subscribe_to_all_events(RailsEventStore::LinkByCorrelationId.new)
     store.subscribe_to_all_events(RailsEventStore::LinkByCausationId.new)
+
+    store.subscribe(to: [Events::Upvoted]) do |event|
+      Rails.logger.info("Upvote recorded for event #{event.data[:event_id]} by user #{event.data[:user_id]}")
+    end
+    store.subscribe(to: [Events::Downvoted]) do |event|
+      Rails.logger.info("Downvoted recorded for event #{event.data[:event_id]} by user #{event.data[:user_id]}")
+    end
   end
 
   # Register command handlers below
