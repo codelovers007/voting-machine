@@ -71,4 +71,4 @@ group :test do
   gem "selenium-webdriver"
   gem "rails-controller-testing"
 end
-gem "rails_event_store", "~> 2.18.0"
+gem "rails_event_store", "~> 2.19.0"
